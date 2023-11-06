@@ -1,0 +1,7 @@
+FROM python:3.11.6-slim
+
+RUN pip install pandas
+
+COPY run.py /run.py
+
+CMD python /run.py
