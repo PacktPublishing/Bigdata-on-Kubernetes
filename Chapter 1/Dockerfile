@@ -1,8 +1,6 @@
-FROM alpine
+FROM python:3.11-alpine
 
-RUN apk add --no-cache python3 py3-pip
-
-RUN pip3 install fastapi uvicorn
+RUN pip --no-cache-dir install fastapi uvicorn
 
 EXPOSE 8087
 
