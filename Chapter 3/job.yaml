@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dataprocessingjob
+spec:
+  template:
+    spec:
+      containers:
+      - name: dataprocessingjob
+        image: neylsoncrepalde/dataprocessingjob:v1
+      restartPolicy: Never
+  backoffLimit: 4

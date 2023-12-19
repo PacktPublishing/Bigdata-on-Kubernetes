@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jokeapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jokeapi 
+  template:
+    metadata:
+      labels:
+        app: jokeapi
+    spec:
+      containers:
+      - name: jokeapi
+        image: neylsoncrepalde/jokeapi:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8087 
