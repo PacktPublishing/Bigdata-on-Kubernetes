@@ -8,6 +8,7 @@ urls_dict = {
     "ratings.tsv.gz": "https://datasets.imdbws.com/title.ratings.tsv.gz"
 }
 
+
 def get_imdb_data(urls):
     for title, url in urls.items():
         response = requests.get(url, stream=True)
