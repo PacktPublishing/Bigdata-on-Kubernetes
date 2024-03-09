@@ -106,7 +106,7 @@ services:
     hostname: postgres
     container_name: postgres
     environment: 
-      POSTGRES_PASSWORD: Ney1987
+      POSTGRES_PASSWORD: postgres
     networks:
       - proxynet
 
