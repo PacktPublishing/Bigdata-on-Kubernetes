@@ -2,3 +2,4 @@ Chapter 5/data/*
 .ipynb_checkpoints
 tests.ipynb
 .DS_Store
+.env_kafka_connect
