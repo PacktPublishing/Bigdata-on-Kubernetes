@@ -30,7 +30,7 @@ if __name__ == "__main__":
     parser.add_argument('-n', type=int, default=1,
                         help='sample size')
     parser.add_argument('--connection-string', '-cs', dest="connection_string", 
-                        type=str, default='postgresql://postgres:Ney1987@localhost:5432/postgres',
+                        type=str, default='postgresql://postgres:postgres@localhost:5432/postgres',
                         help='Connection string to the database')
     parser.add_argument('--silent', type=str2bool, nargs='?',
                         const=True, default=False,
