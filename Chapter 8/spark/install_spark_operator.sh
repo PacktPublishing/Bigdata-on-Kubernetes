@@ -1,4 +1,4 @@
-eksctl create cluster --managed --alb-ingress-access --node-private-networking --full-ecr-access --name=studycluster --instance-types=m6i.large --region=us-east-1 --nodes-min=3 --nodes-max=4 --nodegroup-name=ng-studycluster
+eksctl create cluster --managed --alb-ingress-access --node-private-networking --full-ecr-access --name=studycluster --instance-types=m6i.xlarge --region=us-east-1 --nodes-min=3 --nodes-max=4 --nodegroup-name=ng-studycluster
 
 kubectl create namespace spark-operator
 
