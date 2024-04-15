@@ -27,27 +27,22 @@ def titanic_processing():
         print("And so, it begins!")
 
     @task
-    def download_data():
-        destination = "/tmp/titanic.csv"
-        response = requests.get(
-            "https://raw.githubusercontent.com/neylsoncrepalde/titanic_data_with_semicolon/main/titanic.csv", 
-            stream=True
-        )
-        with open(destination, mode="wb") as file:
-            file.write(response.content)
-        return destination
+    def read_data():
+        df = pd.read_csv("https://raw.githubusercontent.com/neylsoncrepalde/titanic_data_with_semicolon/main/titanic.csv", sep=";")
+        survivors = df.loc[df.Survived == 1, "Survived"].sum()
+        survivors_sex = df.loc[df.Survived == 1, ["Survived", "Sex"]].groupby("Sex").count()
+        return {
+            'survivors_count': survivors,
+            'survivors_sex': survivors_sex
+        }
 
     @task
-    def analyze_survivors(source):
-        df = pd.read_csv(source, sep=";")
-        res = df.loc[df.Survived == 1, "Survived"].sum()
-        print(res)
+    def print_survivors(source):
+        print(source['survivors_count'])
 
     @task
     def survivors_sex(source):
-        df = pd.read_csv(source, sep=";")
-        res = df.loc[df.Survived == 1, ["Survived", "Sex"]].groupby("Sex").count()
-        print(res)
+        print(source['survivors_sex'])
 
     last = BashOperator(
         task_id="last_task",
@@ -58,9 +53,9 @@ def titanic_processing():
 
     # Orchestration
     first = first_task()
-    downloaded = download_data()
+    downloaded = read_data()
     start >> first >> downloaded
-    surv_count = analyze_survivors(downloaded)
+    surv_count = print_survivors(downloaded)
     surv_sex = survivors_sex(downloaded)
 
     [surv_count, surv_sex] >> last >> end
