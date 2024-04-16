@@ -2,7 +2,6 @@ from airflow.decorators import task, dag
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.bash import BashOperator
 from datetime import datetime
-import requests
 import pandas as pd
 
 default_args = {
