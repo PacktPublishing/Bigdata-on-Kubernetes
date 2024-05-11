@@ -1,0 +1,56 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: imdb-consolidated-table-{{ macros.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') }}
+  namespace: airflow
+spec:
+  volumes:
+    - name: ivy
+      emptyDir: {}
+  sparkConf:
+    spark.driver.extraJavaOptions: "-Divy.cache.dir=/tmp -Divy.home=/tmp"
+    spark.kubernetes.allocation.batch.size: "10"
+  hadoopConf:
+    fs.s3a.impl: org.apache.hadoop.fs.s3a.S3AFileSystem
+  type: Python
+  pythonVersion: "3"
+  mode: cluster
+  image: "docker.io/neylsoncrepalde/spark-operator:v3.1.1-hadoop3-aws-kafka"
+  imagePullPolicy: Always
+  mainApplicationFile: s3a://bdok-539445819060/spark-jobs/spark_imdb_consolidated_table.py
+  sparkVersion: "3.1.1"
+  restartPolicy:
+    type: Never
+  driver:
+    envSecretKeyRefs:
+      AWS_ACCESS_KEY_ID:
+        name: aws-credentials
+        key: aws_access_key_id
+      AWS_SECRET_ACCESS_KEY:
+        name: aws-credentials
+        key: aws_secret_access_key
+    cores: 1
+    coreLimit: "1200m"
+    memory: "1g"
+    labels:
+      version: 3.1.1
+    serviceAccount: spark-operator-spark
+    volumeMounts:
+      - name: ivy
+        mountPath: /tmp
+  executor:
+    envSecretKeyRefs:
+      AWS_ACCESS_KEY_ID:
+        name: aws-credentials
+        key: aws_access_key_id
+      AWS_SECRET_ACCESS_KEY:
+        name: aws-credentials
+        key: aws_secret_access_key
+    cores: 1
+    instances: 1
+    memory: "1g"
+    labels:
+      version: 3.1.1
+    volumeMounts:
+      - name: ivy
+        mountPath: /tmp
