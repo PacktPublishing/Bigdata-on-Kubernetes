@@ -63,7 +63,7 @@ def IMDB_batch():
         consolidated_table = SparkKubernetesOperator(
             task_id='consolidated_table',
             namespace="airflow",
-            application_file="spark_imdb_consolidated_table.yaml"
+            application_file="spark_imdb_consolidated_table.yaml",
             kubernetes_conn_id="kubernetes_default",
             do_xcom_push=True
         )
