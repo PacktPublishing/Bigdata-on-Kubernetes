@@ -8,7 +8,7 @@ from datetime import datetime
 import requests
 import boto3
 
-APP_FILES_PATH = '/opt/airflow/dags/repo/dags'
+APP_FILES_PATH = '/opt/airflow/dags/repo/Chapter 10/batch/dags'
 
 aws_access_key_id = Variable.get("aws_access_key_id")
 aws_secret_access_key = Variable.get("aws_secret_access_key")
@@ -55,7 +55,7 @@ def IMDB_batch():
         tsvs_to_parquet = SparkKubernetesOperator(
             task_id="tsvs_to_parquet",
             namespace="airflow",
-            application_file="spark_imdb_tsv_parquet.yaml",
+            application_file=open(f"{APP_FILES_PATH}/spark_imdb_tsv_parquet.yaml").read(),
             kubernetes_conn_id="kubernetes_default",
             # do_xcom_push=True
         )
