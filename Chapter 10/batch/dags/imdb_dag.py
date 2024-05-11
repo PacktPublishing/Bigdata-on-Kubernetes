@@ -55,7 +55,7 @@ def IMDB_batch():
         tsvs_to_parquet = SparkKubernetesOperator(
             task_id="tsvs_to_parquet",
             namespace="airflow",
-            application_file=open(f"{APP_FILES_PATH}/spark_imdb_tsv_parquet.yaml").read(),
+            application_file="spark_imdb_tsv_parquet.yaml",
             kubernetes_conn_id="kubernetes_default",
             do_xcom_push=True
         )
