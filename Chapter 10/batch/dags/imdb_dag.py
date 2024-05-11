@@ -3,13 +3,13 @@ from airflow.utils.task_group import TaskGroup
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import SparkKubernetesOperator
 from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKubernetesSensor
 from airflow.providers.amazon.aws.operators.glue_crawler import GlueCrawlerOperator
-from airflow.models import Variables
+from airflow.models import Variable
 from datetime import datetime
 import requests
 import boto3
 
-aws_access_key_id = Variables.get("aws_access_key_id")
-aws_secret_access_key = Variables.get("aws_secret_access_key")
+aws_access_key_id = Variable.get("aws_access_key_id")
+aws_secret_access_key = Variable.get("aws_secret_access_key")
 
 s3 = boto3.client('s3', aws_access_key_id, aws_secret_access_key)
 
