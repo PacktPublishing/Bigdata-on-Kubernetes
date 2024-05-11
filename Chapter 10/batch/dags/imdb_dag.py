@@ -57,15 +57,15 @@ def IMDB_batch():
             namespace="airflow",
             application_file="spark_imdb_tsv_parquet.yaml",
             kubernetes_conn_id="kubernetes_default",
-            do_xcom_push=True
+            # do_xcom_push=True
         )
-        tsvs_to_parquet_sensor = SparkKubernetesSensor(
-            task_id="tsvs_to_parquet_sensor",
-            namespace="airflow",
-            application_name="{{ task_instance.xcom_pull(task_ids='tsvs_to_parquet')['metadata']['name'] }}",
-            kubernetes_conn_id="kubernetes_default"
-        )
-        tsvs_to_parquet >> tsvs_to_parquet_sensor
+        # tsvs_to_parquet_sensor = SparkKubernetesSensor(
+        #     task_id="tsvs_to_parquet_sensor",
+        #     namespace="airflow",
+        #     application_name="{{ task_instance.xcom_pull(task_ids='tsvs_to_parquet')['metadata']['name'] }}",
+        #     kubernetes_conn_id="kubernetes_default"
+        # )
+        # tsvs_to_parquet >> tsvs_to_parquet_sensor
     
 
     with TaskGroup('Transformations') as transformations:
