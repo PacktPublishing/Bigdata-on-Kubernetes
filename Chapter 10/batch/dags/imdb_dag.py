@@ -78,9 +78,9 @@ def IMDB_batch():
 
     glue_crawler_consolidated = GlueCrawlerOperator(
         task_id='glue_crawler_consolidated',
-        crawler_name="imdb_consolidated_crawler",
         aws_conn_id='aws_conn',
-        wait_for_completion=True
+        wait_for_completion=True,
+        config = {'Name': 'imdb_consolidated_crawler'}
     )
 
     
