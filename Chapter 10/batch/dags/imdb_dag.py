@@ -63,7 +63,7 @@ def IMDB_batch():
         tsvs_to_parquet_sensor = SparkKubernetesSensor(
             task_id="tsvs_to_parquet_sensor",
             namespace="airflow",
-            application_name="{{ task_instance.xcom_pull(task_ids='tsvs_to_parquet')['metadata']['name'] }}",
+            application_name="{{ task_instance.xcom_pull(task_ids='tsvs_to_parquet.tsvs_to_parquet')['metadata']['name'] }}",
             kubernetes_conn_id="kubernetes_default"
         )
         tsvs_to_parquet >> tsvs_to_parquet_sensor
@@ -80,7 +80,7 @@ def IMDB_batch():
         consolidated_table_sensor = SparkKubernetesSensor(
             task_id='consolidated_table_sensor',
             namespace="airflow",
-            application_name="{{ task_instance.xcom_pull(task_ids='consolidated_table')['metadata']['name'] }}",
+            application_name="{{ task_instance.xcom_pull(task_ids='Transformations.consolidated_table')['metadata']['name'] }}",
             kubernetes_conn_id="kubernetes_default"
         )
         consolidated_table >> consolidated_table_sensor
