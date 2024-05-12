@@ -5,8 +5,10 @@ metadata:
   namespace: airflow
 spec:
   volumes:
-    - name: ivy
-      emptyDir: {}
+    - name: "ivy"
+      hostPath:
+        path: "/tmp"
+        type: Directory
   sparkConf:
     spark.driver.extraJavaOptions: "-Divy.cache.dir=/tmp -Divy.home=/tmp"
     spark.kubernetes.allocation.batch.size: "10"
