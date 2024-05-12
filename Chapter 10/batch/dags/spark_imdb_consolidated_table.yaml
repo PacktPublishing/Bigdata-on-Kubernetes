@@ -34,7 +34,7 @@ spec:
     memory: "1g"
     labels:
       version: 3.1.1
-    serviceAccount: spark-operator-spark
+    serviceAccount: spark
     volumeMounts:
       - name: ivy
         mountPath: /tmp
