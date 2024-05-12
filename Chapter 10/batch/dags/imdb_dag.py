@@ -88,6 +88,7 @@ def IMDB_batch():
 
     glue_crawler_consolidated = GlueCrawlerOperator(
         task_id='glue_crawler_consolidated',
+        region_name='us-east-1',
         aws_conn_id='aws_conn',
         wait_for_completion=True,
         config = {'Name': 'imdb_consolidated_crawler'}
