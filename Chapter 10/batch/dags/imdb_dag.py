@@ -8,7 +8,7 @@ from datetime import datetime
 import requests
 import boto3
 
-APP_FILES_PATH = '/opt/airflow/dags/repo/Chapter 10/batch/dags'
+#APP_FILES_PATH = '/opt/airflow/dags/repo/Chapter 10/batch/dags'
 
 aws_access_key_id = Variable.get("aws_access_key_id")
 aws_secret_access_key = Variable.get("aws_secret_access_key")
@@ -55,17 +55,18 @@ def IMDB_batch():
         tsvs_to_parquet = SparkKubernetesOperator(
             task_id="tsvs_to_parquet",
             namespace="airflow",
-            application_file=open(f"{APP_FILES_PATH}/spark_imdb_tsv_parquet.yaml").read(),
+            #application_file=open(f"{APP_FILES_PATH}/spark_imdb_tsv_parquet.yaml").read(),
+            application_file="spark_imdb_tsv_parquet.yaml",
             kubernetes_conn_id="kubernetes_default",
-            # do_xcom_push=True
+            do_xcom_push=True
         )
-        # tsvs_to_parquet_sensor = SparkKubernetesSensor(
-        #     task_id="tsvs_to_parquet_sensor",
-        #     namespace="airflow",
-        #     application_name="{{ task_instance.xcom_pull(task_ids='tsvs_to_parquet')['metadata']['name'] }}",
-        #     kubernetes_conn_id="kubernetes_default"
-        # )
-        # tsvs_to_parquet >> tsvs_to_parquet_sensor
+        tsvs_to_parquet_sensor = SparkKubernetesSensor(
+            task_id="tsvs_to_parquet_sensor",
+            namespace="airflow",
+            application_name="{{ task_instance.xcom_pull(task_ids='tsvs_to_parquet')['metadata']['name'] }}",
+            kubernetes_conn_id="kubernetes_default"
+        )
+        tsvs_to_parquet >> tsvs_to_parquet_sensor
     
 
     with TaskGroup('Transformations') as transformations:
