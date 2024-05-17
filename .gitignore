@@ -3,3 +3,4 @@ Chapter 5/data/*
 tests.ipynb
 .DS_Store
 .env_kafka_connect
+connect-image/
