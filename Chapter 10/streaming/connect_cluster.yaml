@@ -1,0 +1,68 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  # kafka connect cluster name
+  name: kafka-connect-cluster
+  annotations:
+     strimzi.io/use-connector-resources: "true"
+  labels:
+    app: kafka-connect-cluster
+spec:
+  version: 3.7.0
+  replicas: 1
+  bootstrapServers: kafka-cluster-kafka-bootstrap:9093
+  image: neylsoncrepalde/strimzi-kafka-jdbc-s3-es:0.40.0-kafka-3.7.0
+  tls:
+    trustedCertificates:
+      - secretName: kafka-cluster-cluster-ca-cert
+        certificate: ca.crt
+  config:
+    # default config [strimzi]
+    key.converter: org.apache.kafka.connect.json.JsonConverter
+    value.converter: org.apache.kafka.connect.json.JsonConverter
+    key.converter.schemas.enable: true
+    value.converter.schemas.enable: true
+    internal.key.converter: org.apache.kafka.connect.json.JsonConverter
+    internal.value.converter: org.apache.kafka.connect.json.JsonConverter
+    internal.key.converter.schemas.enable: false
+    internal.value.converter.schemas.enable: false
+
+    # config connect cluster
+    group.id: connect-cluster
+    offset.storage.topic: connect-cluster-offsets
+    config.storage.topic: connect-cluster-configs
+    status.storage.topic: connect-cluster-status
+    config.storage.replication.factor: -1
+    offset.storage.replication.factor: -1
+    status.storage.replication.factor: -1
+
+    # file config provider
+    config.providers: file
+    config.providers.file.class: org.apache.kafka.common.config.provider.FileConfigProvider 
+  
+  # external configs
+  externalConfiguration:
+    env:
+      - name: AWS_ACCESS_KEY_ID
+        valueFrom:
+          secretKeyRef:
+            name: aws-credentials
+            key: aws_access_key_id
+      - name: AWS_SECRET_ACCESS_KEY
+        valueFrom:
+          secretKeyRef:
+            name: aws-credentials
+            key: aws_secret_access_key
+      # - name: POSTGRES_PASSWORD
+      #   valueFrom:
+      #     secretKeyRef:
+      #       name: postgres-credentials
+      #       key: password
+  resources:
+  # requests and limits
+    requests:
+        memory: 2Gi
+        cpu: 500m
+    limits:
+        memory: 3Gi
+        cpu: 1000m
