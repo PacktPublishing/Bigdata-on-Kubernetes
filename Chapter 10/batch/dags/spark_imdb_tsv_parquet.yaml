@@ -17,7 +17,7 @@ spec:
   mode: cluster
   image: "docker.io/neylsoncrepalde/spark-operator:v3.1.1-hadoop3-aws-kafka"
   imagePullPolicy: Always
-  mainApplicationFile: s3a://bdok-539445819060/spark-jobs/spark_imdb_tsv_parquet.py
+  mainApplicationFile: s3a://bdok-<ACCOUNT_NUMBER>/spark-jobs/spark_imdb_tsv_parquet.py
   sparkVersion: "3.1.1"
   restartPolicy:
     type: Never
