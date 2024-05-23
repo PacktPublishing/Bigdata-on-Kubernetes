@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-with-claude
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-with-claude
+  template:
+    metadata:
+      labels:
+        app: chat-with-claude
+    spec:
+      containers:
+      - name: chat-with-claude
+        image: docker.io/neylsoncrepalde/chat-with-claude:v1
+        ports:
+        - containerPort: 8501
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws_access_key_id
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws_secret_access_key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-with-claude
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8501
+    targetPort: 8501
+  selector:
+    app: chat-with-claude

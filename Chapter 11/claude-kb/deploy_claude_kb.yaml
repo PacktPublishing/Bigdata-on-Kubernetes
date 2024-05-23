@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-with-claude
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rag-with-claude
+  template:
+    metadata:
+      labels:
+        app: rag-with-claude
+    spec:
+      containers:
+      - name: rag-with-claude
+        image: docker.io/neylsoncrepalde/chat-with-claude:kb-v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8501
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws_access_key_id
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws_secret_access_key
+        - name: KB_ID
+          valueFrom:
+            configMapKeyRef:
+              name: kb-config
+              key: kb_id
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rag-with-claude
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8501
+    targetPort: 8501
+  selector:
+    app: rag-with-claude
