@@ -5,3 +5,4 @@ tests.ipynb
 .env_kafka_connect
 connect-image/
 auth-files/
+competency-data/
