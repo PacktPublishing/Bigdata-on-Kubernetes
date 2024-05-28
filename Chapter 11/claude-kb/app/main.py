@@ -1,12 +1,11 @@
 import streamlit as st
 import boto3
-from botocore.client import Config
 import os
-from langchain_community.chat_models import BedrockChat
+from botocore.client import Config
 from langchain.prompts import PromptTemplate
 from langchain.retrievers.bedrock import AmazonKnowledgeBasesRetriever
-from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.chains import RetrievalQA
+from langchain_community.chat_models import BedrockChat
 
 kb_id = os.getenv("KB_ID")
 bedrock_config = Config(connect_timeout=120, read_timeout=120, retries={'max_attempts': 0})
@@ -16,7 +15,7 @@ bedrock_agent_client = boto3.client(
 bedrock = boto3.client(service_name='bedrock-runtime', region_name="us-east-1")
 
 PROMPT_TEMPLATE = """
-Human: You are a friendly AI assistant and provides answers to questions about AWS competency program for partners.
+Human: You are a friendly AI assistant and provide answers to questions about AWS competency program for partners.
 Use the following pieces of information to provide a concise answer to the question enclosed in <question> tags.
 Don't use tags when you generate an answer. Answer in plain text, use bullets or lists if needed.
 If you don't know the answer, just say that you don't know, don't try to make up an answer.
@@ -53,8 +52,6 @@ def choose_model(option):
         model_id=modelId,
         client=bedrock,
         model_kwargs=inference_modifier,
-        streaming=True,
-        callbacks=[StreamingStdOutCallbackHandler()],
     )
     return model
 
