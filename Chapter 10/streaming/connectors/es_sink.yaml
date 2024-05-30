@@ -1,0 +1,27 @@
+apiVersion: "kafka.strimzi.io/v1beta2"
+kind: "KafkaConnector"
+metadata:
+  # connector name
+  name: "es-sink"
+  namespace: kafka
+  labels:
+    # kafka connect [cluster] name
+    strimzi.io/cluster: kafka-connect-cluster
+spec:
+  class: io.confluent.connect.elasticsearch.ElasticsearchSinkConnector
+  tasksMax: 1
+  config:
+    topics: "customers-transformed"
+    connection.url: "https://elastic-es-http.kafka:9200"
+    connection.username: "elastic"
+    connection.password: "w6MR9V0SNLD79b56arB9Q6b6"
+    batch.size: 1
+    key.ignore: "true"
+    elastic.security.protocol: "SSL"
+    elastic.https.ssl.keystore.location: "/opt/kafka/external-configuration/es-keystore-volume/keystore.jks"
+    elastic.https.ssl.keystore.password: "OfwxynZ8KATfZSZe"
+    elastic.https.ssl.key.password: "OfwxynZ8KATfZSZe"
+    elastic.https.ssl.keystore.type: "JKS"
+    elastic.https.ssl.truststore.location: "/opt/kafka/external-configuration/es-keystore-volume/keystore.jks"
+    elastic.https.ssl.truststore.password: "OfwxynZ8KATfZSZe"
+    elastic.https.ssl.truststore.type: "JKS"
