@@ -1,0 +1,157 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "AWS Competency Agent API",
+      "description": "API for a Bedrock Agent assistant to help building AWS Competency cases worksheets", 
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/generateCaseSheet": {
+        "post": {
+          "description": "Generate a case worksheet based on information provided",
+          "parameters": [
+            {
+              "name": "client",
+              "in": "query",
+              "description": "Client to whom this case was built for",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "casename",
+              "in": "query",
+              "description": "Name of the case that was built",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "challenge",
+              "in": "query",
+              "description": "A brief description of the business challenge that was the goal of the use case",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "solution",
+              "in": "query",
+              "description": "A brief description of the solution proposed",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "budget",
+              "in": "query",
+              "description": "The budget approved for this use case",
+              "required": true,
+              "schema": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "kpi",
+              "in": "query",
+              "description": "The Key Performance Index or goal metric adopted to monitor the performance of the solution",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Case sheet generated successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "client": {
+                        "type": "string"
+                      },
+                      "casename": {
+                        "type": "string" 
+                      },
+                      "challenge": {
+                        "type": "string"
+                      },
+                      "solution": {
+                        "type": "string"
+                      },
+                      "budget": {
+                        "type": "number"
+                      },
+                      "kpi": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/checkCase": {
+        "post": {
+          "description": "Check information on a given case.",
+          "parameters": [
+            {
+              "name": "caseSheetId",
+              "in": "query",
+              "description": "ID of the case sheet to approve",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Case information available",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "client": {
+                        "type": "string"
+                      },
+                      "casename": {
+                        "type": "string" 
+                      },
+                      "challenge": {
+                        "type": "string"
+                      },
+                      "solution": {
+                        "type": "string"
+                      },
+                      "budget": {
+                        "type": "number"
+                      },
+                      "kpi": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
