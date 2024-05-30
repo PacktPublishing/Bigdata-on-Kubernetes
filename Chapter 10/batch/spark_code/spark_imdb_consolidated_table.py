@@ -1,7 +1,6 @@
 from pyspark import SparkContext, SparkConf
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as f
-import os
 
 # set conf
 conf = (
