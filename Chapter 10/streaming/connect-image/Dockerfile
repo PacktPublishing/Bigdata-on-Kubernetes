@@ -1,6 +1,14 @@
-FROM confluentinc/cp-kafka-connect-base:7.6.0
+FROM quay.io/strimzi/kafka:0.40.0-kafka-3.7.0
 
-RUN confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.7.5 \
-    && confluent-hub install --no-prompt confluentinc/kafka-connect-s3:10.5.8 \
-    && confluent-hub install --no-prompt confluentinc/kafka-connect-elasticsearch:14.0.5
-    
+# using root user
+USER root:root
+
+# create default directory jdbc plugins
+RUN mkdir -p /opt/kafka/plugins/kafka-connect-jdbc
+RUN mkdir -p /opt/kafka/plugins/kafka-connect-s3
+RUN mkdir -p /opt/kafka/plugins/kafka-connect-es
+
+# copy local jars files to image
+COPY kafka-connect-jdbc/ /opt/kafka/plugins/kafka-connect-jdbc/
+COPY kafka-connect-s3/ /opt/kafka/plugins/kafka-connect-s3/
+COPY kafka-connect-es/ /opt/kafka/plugins/kafka-connect-es/
