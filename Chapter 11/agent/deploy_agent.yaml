@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agent
+  template:
+    metadata:
+      labels:
+        app: agent
+    spec:
+      containers:
+      - name: agent
+        image: docker.io/neylsoncrepalde/chat-with-claude-agent:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8501
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws_access_key_id
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws_secret_access_key
+        - name: AGENT_ALIAS_ID
+          valueFrom:
+            configMapKeyRef:
+              name: agent-config
+              key: agent_alias_id
+        - name: AGENT_ID
+          valueFrom:
+            configMapKeyRef:
+              name: agent-config
+              key: agent_id
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agent
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8501
+    targetPort: 8501
+  selector:
+    app: agent
