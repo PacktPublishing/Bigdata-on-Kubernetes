@@ -9,7 +9,7 @@ conf = (
         .set("spark.driver.extraJavaOptions", "-Dcom.amazonaws.services.s3.enableV4=true")
         .set("spark.hadoop.fs.s3a.fast.upload", True)
         .set("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
-        .set("spark.hadoop.fs.s3a.aws.crendentials.provider", "com.amazonaws.auth.EnvironmentVariablesCredentials")
+        .set("spark.hadoop.fs.s3a.aws.credentials.provider", "com.amazonaws.auth.EnvironmentVariablesCredentials")
         .set("spark.jars.packages", "org.apache.hadoop:hadoop-aws:2.7.3")
 )
 
