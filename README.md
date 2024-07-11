@@ -62,7 +62,7 @@ With the following software and hardware list you can run all code files present
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it]().
 
 ### Related products
-* Data Engineering with Databricks Cookbook [[Packt]](https://www.packtpub.com/en-in/product/data-engineering-with-databricks-cookbook-9781837633357?type=subscription)) [[Amazon]](https://www.amazon.com/dp/1837633355)
+* Data Engineering with Databricks Cookbook [[Packt]](https://www.packtpub.com/en-in/product/data-engineering-with-databricks-cookbook-9781837633357?type=subscription) [[Amazon]](https://www.amazon.com/dp/1837633355)
 
 * Data Engineering with Scala and Spark [[Packt]](https://www.packtpub.com/en-in/product/data-engineering-with-scala-and-spark-9781804612583?type=subscription) [[Amazon]](https://www.amazon.com/dp/1804612588)
 
