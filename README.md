@@ -11,13 +11,13 @@ scalable data solutions**
 With step-by-step instructions and examples, this book will teach you the skills needed to build and deploy complex data pipelines on Kubernetes, resulting in efficient and scalable big data solutions.
 
 This book covers the following exciting features:
-Install and use Docker to run containers and build concise images
-Gain a deep understanding of Kubernetes architecture and its components
-Deploy and manage Kubernetes clusters on different cloud platforms
-Implement and manage data pipelines using Apache Spark and Apache Airflow
-Deploy and configure Apache Kafka for real-time data ingestion and processing
-Build and orchestrate a complete big data pipeline using open-source tools
-Deploy Generative AI applications on a Kubernetes-based architecture
+* Install and use Docker to run containers and build concise images
+* Gain a deep understanding of Kubernetes architecture and its components
+* Deploy and manage Kubernetes clusters on different cloud platforms
+* Implement and manage data pipelines using Apache Spark and Apache Airflow
+* Deploy and configure Apache Kafka for real-time data ingestion and processing
+* Build and orchestrate a complete big data pipeline using open-source tools
+* Deploy Generative AI applications on a Kubernetes-based architecture
 
 If you feel this book is for you, get your [copy](https://www.amazon.com/dp/1835462146) today!
 
