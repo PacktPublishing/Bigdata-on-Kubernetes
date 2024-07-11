@@ -58,9 +58,6 @@ With the following software and hardware list you can run all code files present
 | 1-11 | Eksctl | Windows, macOS, or Linux |
 | 1-11 | DBeaver Community Edition | Windows, macOS, or Linux |
 
-
-We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it]().
-
 ### Related products
 * Data Engineering with Databricks Cookbook [[Packt]](https://www.packtpub.com/en-in/product/data-engineering-with-databricks-cookbook-9781837633357?type=subscription) [[Amazon]](https://www.amazon.com/dp/1837633355)
 
