@@ -1,8 +1,8 @@
 # Big Data on Kubernetes
 
-<a href="https://www.amazon.com/Big-Data-Kubernetes-practical-efficient/dp/1835462146/ref=tmm_pap_swatch_0?_encoding=UTF8&dib_tag=se&dib=eyJ2IjoiMSJ9.f-qgjQEcIcUJ87LXGDQGLtg8bYoODUh-eqkvU-Lk08Gl_Dehn2iyKELYaqXZj2j9zLVxCiWuGdfi-tpY0sA8AzZV9GrYd1fcc4_QobRvWovbWkHMmpfqitRy0NFcoit9QiwnQ8gXFGDd-HQqjgK1cA.6i1oTi7zW4AIDD_NCZwG5lcXrYhl5Ht0d5K1OPMZqNw&qid=1720678581&sr=1-3&utm_source=github&utm_medium=repository&utm_campaign=9781835082287"><img src="https://m.media-amazon.com/images/I/810h3uxswlL._SL1500_.jpg" alt="Shipping & Fee Details" height="256px" align="right"></a>
+<a href="https://www.packtpub.com/en-in/product/big-data-on-kubernetes-9781835462140"><img src="https://m.media-amazon.com/images/I/810h3uxswlL._SL1500_.jpg" alt="Shipping & Fee Details" height="256px" align="right"></a>
 
-This is the code repository for [Big Data on Kubernetes](https://www.amazon.com/Big-Data-Kubernetes-practical-efficient/dp/1835462146/ref=tmm_pap_swatch_0?_encoding=UTF8&dib_tag=se&dib=eyJ2IjoiMSJ9.f-qgjQEcIcUJ87LXGDQGLtg8bYoODUh-eqkvU-Lk08Gl_Dehn2iyKELYaqXZj2j9zLVxCiWuGdfi-tpY0sA8AzZV9GrYd1fcc4_QobRvWovbWkHMmpfqitRy0NFcoit9QiwnQ8gXFGDd-HQqjgK1cA.6i1oTi7zW4AIDD_NCZwG5lcXrYhl5Ht0d5K1OPMZqNw&qid=1720678581&sr=1-3&utm_source=github&utm_medium=repository&utm_campaign=9781835082287), published by Packt.
+This is the code repository for [Big Data on Kubernetes](https://www.packtpub.com/en-in/product/big-data-on-kubernetes-9781835462140), published by Packt.
 
 **A practical guide to building efficient and 
 scalable data solutions**
