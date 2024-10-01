@@ -47,7 +47,7 @@ spec:
         name: aws-credentials
         key: aws_secret_access_key
     cores: 1
-    instances: 1
+    instances: 3
     memory: "1g"
     labels:
       version: 3.1.1
